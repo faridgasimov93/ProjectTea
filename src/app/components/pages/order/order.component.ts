@@ -51,16 +51,21 @@ export class OrderComponent implements OnInit {
 
 
   ngOnInit(): void {
-    if (this.cartService.product) {
-      this.signInForm.patchValue({
-        product : this.cartService.product
-      });
-    }
+    this.productService.getSavedProduct().subscribe(product => {
+      if (product) {
+        this.signInForm.patchValue( {
+          product: product.title
+        })
+      }
+    })
+    // if (this.cartService.product) {
+    //   this.signInForm.patchValue({
+    //     product : this.cartService.product
+    //   });
+    // }
   }
 
-  sendOrder(event: Event):void {
-    event.preventDefault();
-    // console.log(this.signInForm.value);
+  sendOrder():void {
     if (this.signInForm.invalid) {
       this.signInForm.markAllAsTouched();
       return;
@@ -81,6 +86,7 @@ export class OrderComponent implements OnInit {
             this.successMessage = 'Спасибо за заказ. Мы свяжемся с вами в ближайшее время!';
             document.getElementById('form')?.classList.add('d-none');
             document.getElementById('test-popup')?.classList.remove('d-none');
+            this.productService.clearSavedProduct();
           } else {
             this.errorMessage = "Произошла ошибка. Попробуйте еще раз.";
           }

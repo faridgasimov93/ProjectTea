@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {ProductType} from "../types/product.type";
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 import {OrderResponseType} from "../types/order-response.type";
 import {OrderType} from "../types/order.type";
 
@@ -11,8 +11,13 @@ import {OrderType} from "../types/order.type";
 
 export class ProductService {
 
+  private productSubject = new BehaviorSubject<ProductType | null>(null);
 
   constructor(private http: HttpClient) {
+    const savedProduct = localStorage.getItem('selectedProduct');
+    if (savedProduct) {
+      this.productSubject.next(JSON.parse(savedProduct));
+    }
   }
 
   getProducts(): Observable<ProductType[]> {
@@ -26,4 +31,19 @@ export class ProductService {
   sendOrder(formData: OrderType ): Observable<OrderResponseType> {
     return this.http.post<OrderResponseType>('https://testologia.ru/order-tea', formData);
   }
+
+  saveProduct(product: ProductType): void {
+    localStorage.setItem('selectedProduct', JSON.stringify(product));
+    this.productSubject.next(product);
+  }
+
+  getSavedProduct(): Observable<ProductType | null> {
+    return this.productSubject.asObservable();
+  }
+
+  clearSavedProduct(): void {
+    localStorage.removeItem('selectedProduct');
+    this.productSubject.next(null);
+  }
+
 }

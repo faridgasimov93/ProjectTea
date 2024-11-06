@@ -40,8 +40,9 @@ export class ProductComponent implements OnInit {
     });
   }
 
-  addToCart(title:string):void {
-    this.cartService.product = title;
+  addToCart(product: ProductType):void {
+    this.cartService.product = product.title;
+    this.productService.saveProduct(product);
     this.router.navigate(['/order']);
   }
 

@@ -9,7 +9,7 @@
         <h5 class="card-title fw-bold fw-bold">{{product.title}}</h5>
         <p class="card-text fw-normal">{{product.description}}</p>
         <span class="fs-5 fw-bold text-primary me-5">Цена: {{product.price}} рублей</span>
-        <a [routerLink]="['/product', product.id]" class="btn btn-primary w-25" (click)="addToCart(product.title)">Купить</a>
+        <a [routerLink]="['/product', product.id]" class="btn btn-primary w-25" (click)="addToCart(product)">Купить</a>
       </div>
     </div>
 </div>

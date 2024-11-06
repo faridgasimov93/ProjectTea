@@ -1,7 +1,7 @@
 <!--Контейнер с формой-->
 <div class="container vh-100" id="form">
   <h2 class="text-center fw-bold mt-5 mb-5">Сделать заказ</h2>
-  <form class="col-lg-6 mx-auto" id="myForm" [formGroup]="signInForm">
+  <form class="col-lg-6 mx-auto" id="myForm" [formGroup]="signInForm" (ngSubmit)="sendOrder()">
     <!--товар-->
     <div class="form-row row mb-4">
       <div class="form-group">
@@ -98,7 +98,7 @@
       </div>
     </div>
 
-    <button type="button" class="btn btn-primary mb-5 w-30 open-popup-link" id="sendBtn" (click)="sendOrder($event)">
+    <button  class="btn btn-primary mb-5 w-30 open-popup-link" id="sendBtn" [disabled]="signInForm.invalid || signInForm.disabled">
       Отправить
     </button>
     <div *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</div>
