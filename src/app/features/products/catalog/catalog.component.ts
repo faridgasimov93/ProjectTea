@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {ProductType} from "../../../types/product.type";
-import {CartService} from "../../../services/cart.service";
 import {Router} from "@angular/router";
-import {ProductService} from "../../../services/product.service";
+import {ProductType} from "../../../../types/product.type";
+import {CartService} from "../../../shared/services/cart.service";
+import {ProductService} from "../../../shared/services/product.service";
 
 @Component({
   selector: 'app-catalog',

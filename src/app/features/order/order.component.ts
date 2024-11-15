@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {CartService} from "../../../services/cart.service";
 import { FormControl, FormGroup, Validators} from "@angular/forms";
-import {ProductService} from "../../../services/product.service";
 import {OrderType} from "../../../types/order.type";
+import {ProductService} from "../../shared/services/product.service";
+import {CartService} from "../../shared/services/cart.service";
 
 
 @Component({
