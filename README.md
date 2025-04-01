@@ -1,3 +1,6 @@
+# Live version
+Available at GitHub pages: https://faridgasimov93.github.io/ProjectTea/
+
 # ProjectTea
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.13.
